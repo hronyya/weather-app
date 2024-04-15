@@ -68,3 +68,47 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default App;
+
+class Weather extends React.Component {
+render() {
+const {
+tempature_2m_max: max,
+tempature_2m_min: min,
+time: dates,
+weathercode: codes,
+} = this.props.weather;
+
+    return (
+      <div>
+        <h2>Weather {this.props.location}</h2>
+        <ul className="weather">
+          {dates.map((date, i) => (
+            <Day
+              date={date}
+              max={max.at(i)}
+              min={min.at(i)}
+              code={codes.at(i)}
+              key={date}
+            />
+          ))}
+        </ul>
+      </div>
+    );
+
+}
+}
+
+class Day extends React.Component {
+render() {
+const { date, max, min, code } = this.props;
+return (
+<li>
+<p>{date}</p>
+<p>
+{min} &deg; &mdash; {max}&deg;
+</p>
+</li>
+);
+}
+}
